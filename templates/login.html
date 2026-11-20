@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | TaskFlow Student Portal</title>
+    
+    <meta name="description" content="Sign in to your TaskFlow Student Productivity Dashboard using Firebase Authentication.">
+
+    <!-- Google Fonts: Outfit & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Firebase Web SDK v10 (Compat version for simplicity in pure script tags) -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+</head>
+<body class="auth-page-body">
+
+    <div class="auth-wrapper">
+        <div class="auth-card">
+            
+            <!-- Header Brand -->
+            <div class="auth-brand">
+                <div class="logo-icon">
+                    <i data-lucide="check-square"></i>
+                </div>
+                <h2>TaskFlow</h2>
+                <span class="brand-badge">App Engine Portal</span>
+            </div>
+
+            <div class="auth-header-text">
+                <h3>Welcome back</h3>
+                <p>Sign in to your student dashboard to access your tasks</p>
+            </div>
+
+            <!-- Error Banner -->
+            <div class="auth-alert hidden" id="authAlert">
+                <i data-lucide="alert-circle"></i>
+                <span id="authAlertText">Error message goes here</span>
+            </div>
+
+            <!-- Login Form -->
+            <form id="loginForm" novalidate>
+                
+                <div class="form-group">
+                    <label for="loginEmail">Student Email <span class="required">*</span></label>
+                    <div class="input-with-icon">
+                        <i data-lucide="mail" class="input-icon"></i>
+                        <input type="email" id="loginEmail" placeholder="student@university.edu" required autocomplete="email">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="label-row">
+                        <label for="loginPassword">Password <span class="required">*</span></label>
+                        <a href="#" id="forgotPasswordBtn" class="forgot-link">Forgot password?</a>
+                    </div>
+                    <div class="input-with-icon">
+                        <i data-lucide="lock" class="input-icon"></i>
+                        <input type="password" id="loginPassword" placeholder="••••••••" required autocomplete="current-password">
+                    </div>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <label class="custom-checkbox">
+                        <input type="checkbox" id="rememberMe" checked>
+                        <span class="checkmark"></span>
+                        <span class="remember-text">Remember me on this browser</span>
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block" id="loginSubmitBtn">
+                    <i data-lucide="log-in"></i>
+                    <span>Sign In to Dashboard</span>
+                </button>
+
+            </form>
+
+            <div class="auth-footer-text">
+                Don't have an account? <a href="/signup">Create Student Account</a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Firebase Config & Auth Scripts -->
+    <script src="{{ url_for('static', filename='js/firebase-config.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+# =============================================================================
+# Google App Engine Standard Environment Configuration
+# Project: Student Task Manager
+# =============================================================================
+
+# Python Runtime Environment
+runtime: python311
+
+# Instance Type: F1 (Free-tier eligible micro instance)
+instance_class: F1
+
+# Automatic Scaling Settings (Limits maximum instances to keep costs 100% free)
+automatic_scaling:
+  target_cpu_utilization: 0.65
+  min_instances: 0
+  max_instances: 2
+
+# Production WSGI Entrypoint using Gunicorn web server
+# App Engine exposes $PORT dynamically (default 8080)
+entrypoint: gunicorn -b :$PORT app:app
+
+# Environment Variables
+env_variables:
+  FLASK_ENV: 'production'
+
+# Static File Handlers (Bypasses Flask for maximum performance when serving CSS/JS/images)
+handlers:
+- url: /static
+  static_dir: static
+
+# Catch-all Handler (Routes all remaining HTTP traffic to Flask WSGI app)
+- url: /.*
+  script: auto

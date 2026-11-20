@@ -1,0 +1,19 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // User Profile Document Rule
+    match /users/{userId} {
+      // A student can ONLY read and write their own user profile document
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+      
+      // Tasks Subcollection Rule: users/{userId}/tasks/{taskId}
+      match /tasks/{taskId} {
+        // A student can ONLY read, create, update, and delete their own tasks
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
+    }
+
+  }
+}

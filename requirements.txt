@@ -1,0 +1,4 @@
+# Student Task Manager Dependencies
+# Required for Google App Engine Standard Deployment
+Flask==3.0.3
+gunicorn==22.0.0

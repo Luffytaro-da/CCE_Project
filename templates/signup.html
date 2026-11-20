@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account | TaskFlow Student Portal</title>
+    
+    <meta name="description" content="Register a new student account on TaskFlow powered by Firebase Authentication.">
+
+    <!-- Google Fonts: Outfit & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Firebase Web SDK v10 -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+</head>
+<body class="auth-page-body">
+
+    <div class="auth-wrapper">
+        <div class="auth-card">
+            
+            <!-- Header Brand -->
+            <div class="auth-brand">
+                <div class="logo-icon">
+                    <i data-lucide="check-square"></i>
+                </div>
+                <h2>TaskFlow</h2>
+                <span class="brand-badge">App Engine Portal</span>
+            </div>
+
+            <div class="auth-header-text">
+                <h3>Create Account</h3>
+                <p>Register your student credentials to start tracking tasks</p>
+            </div>
+
+            <!-- Error Banner -->
+            <div class="auth-alert hidden" id="authAlert">
+                <i data-lucide="alert-circle"></i>
+                <span id="authAlertText">Error message goes here</span>
+            </div>
+
+            <!-- Signup Form -->
+            <form id="signupForm" novalidate>
+                
+                <!-- Full Name -->
+                <div class="form-group">
+                    <label for="signupFullName">Full Name <span class="required">*</span></label>
+                    <div class="input-with-icon">
+                        <i data-lucide="user" class="input-icon"></i>
+                        <input type="text" id="signupFullName" placeholder="Alex Morgan" required autocomplete="name">
+                    </div>
+                </div>
+
+                <!-- Student Email -->
+                <div class="form-group">
+                    <label for="signupEmail">Student Email <span class="required">*</span></label>
+                    <div class="input-with-icon">
+                        <i data-lucide="mail" class="input-icon"></i>
+                        <input type="email" id="signupEmail" placeholder="student@university.edu" required autocomplete="email">
+                    </div>
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                    <label for="signupPassword">Password <span class="required">*</span></label>
+                    <div class="input-with-icon">
+                        <i data-lucide="lock" class="input-icon"></i>
+                        <input type="password" id="signupPassword" placeholder="Minimum 6 characters" required autocomplete="new-password">
+                    </div>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="form-group">
+                    <label for="signupConfirmPassword">Confirm Password <span class="required">*</span></label>
+                    <div class="input-with-icon">
+                        <i data-lucide="shield-check" class="input-icon"></i>
+                        <input type="password" id="signupConfirmPassword" placeholder="Re-enter password" required autocomplete="new-password">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block" id="signupSubmitBtn">
+                    <i data-lucide="user-plus"></i>
+                    <span>Create Account</span>
+                </button>
+
+            </form>
+
+            <div class="auth-footer-text">
+                Already have an account? <a href="/login">Sign In Instead</a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Firebase Config & Auth Scripts -->
+    <script src="{{ url_for('static', filename='js/firebase-config.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+</body>
+</html>
